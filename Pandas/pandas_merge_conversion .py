@@ -151,3 +151,25 @@ print('\n')
 print(df2)
 print('\n')
 print(df_merged)
+
+print('-'*50)
+
+df1 = pd.DataFrame({'key1':['K0','K1','K2','K3'],
+                    'key2':['K4','K5','K6','K7'],
+                    'A': ['A0', 'A1', 'A2','A3'],
+                    'B': ['B0', 'B1', 'B2','B3'] })
+
+
+df2 = pd.DataFrame({'key1':['K0','K1','K2'],
+                    'key2':['K4','K5','K6'],
+                    'C': ['C0', 'C1', 'C2'],
+                    'D': ['D0', 'D1', 'D2'] })
+
+# 여러 열 기준 병합
+df_merged = pd.merge(df1, df2, on=['key1','key2'],how='inner')
+
+print(df1)
+print('\n')
+print(df2)
+print('\n')
+print(df_merged)
