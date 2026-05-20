@@ -131,7 +131,20 @@ df2 = pd.DataFrame({'key':['K0','K1','K2'],
                     'C': ['C0', 'C1', 'C2'],
                     'D': ['D0', 'D1', 'D2'] })
 
+# 열 제거 
 df_merged = pd.merge(df1, df2, on='key', how='inner', suffixes=('_left', '_right'))
+
+print(df1)
+print('\n')
+print(df2)
+print('\n')
+print(df_merged)
+
+print('-'*50)
+
+# 불필요한 열 제거
+df_merged = pd.merge(df1, df2, on='key', how='inner')
+df_merged = df_merged.drop('B', axis=1)
 
 print(df1)
 print('\n')
