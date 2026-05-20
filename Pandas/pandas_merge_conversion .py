@@ -211,3 +211,17 @@ print(
         aggfunc='mean'
     )
 )
+
+print('-'*50)
+# melt()
+
+# Wide-format -> Long-format 변환
+#  여러 개의가족 관련 변수 (sibsp, parch)를 하나의 범주형 변수(family_type)로 무껑서 분석
+melted_family = pd.melt(
+    titanic,
+    id_vars=['Survived'],
+    value_vars=['SibSp', 'Parch'],
+    var_name='family_type',
+    value_name='count'
+)
+print(melted_family)
