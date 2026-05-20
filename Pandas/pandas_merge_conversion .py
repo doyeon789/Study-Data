@@ -92,3 +92,30 @@ print('\n')
 print(df2)
 print('\n')
 print(join_merge)
+
+print('-'*50)
+
+sales = pd.DataFrame({
+    'customer_id':[1,2,3,4],
+    'product_id':[101,102,103,104],
+    'quantity':[5,2,3,1]
+})
+
+customers = pd.DataFrame({
+    'customer_id':[1,2,3,5],
+    'name':['Alice','Bob','Charlie','David'],
+    'city':['Seoul','Busan','Daegu','Incheon']
+})
+
+# 인덱스 customer_id로 설정
+ssales = sales.set_index('customer_id')
+customers = customers.set_index('customer_id')
+
+# Left join
+joined_data = sales.join(customers, how='left')
+
+print(sales)
+print('\n')
+print(customers)
+print('\n')
+print(join_merge)
