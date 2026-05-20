@@ -72,3 +72,23 @@ print('\n')
 print(df2)
 print('\n')
 print(right_merge)
+
+print('-'*50)
+
+df1 = pd.DataFrame({
+    'A': ['A0','A1','A2'],
+    'B': ['B0','B1','B2'],
+}, index = ['K0','K1','K2'])
+
+df2 = pd.DataFrame({
+    'C': ['C0','C1','C2'],
+    'D': ['D0','D1','D2'],
+}, index = ['K0','K2','K3'])
+
+join_merge = df1.join(df2, how='left')
+
+print(df1)
+print('\n')
+print(df2)
+print('\n')
+print(join_merge)
