@@ -31,10 +31,21 @@ df2 = pd.DataFrame({'key':['K0','K1','K2'],
                     'C': ['C0', 'C1', 'C2'],
                     'D': ['D0', 'D1', 'D2'] })
 
-df2_merge = pd.merge(df1, df2, on='key', how='inner')
+df_merge = pd.merge(df1, df2, on='key', how='inner')
 
 print(df1)
 print('\n')
 print(df2)
 print('\n')
-print('df_merged')
+print(df_merge)
+
+print('-'*50)
+
+# Outer Merge
+df_merge = pd.merge(df1, df2, on='key', how='outer')
+
+print(df1)
+print('\n')
+print(df2)
+print('\n')
+print(df_merge)
