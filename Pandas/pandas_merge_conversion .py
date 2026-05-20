@@ -61,3 +61,14 @@ print('\n')
 print(df2)
 print('\n')
 print(left_merge)
+
+print('-'*50)
+
+# Right Merge
+right_merge = pd.merge(df1, df2, on='key', how='right')
+
+print(df1)
+print('\n')
+print(df2)
+print('\n')
+print(right_merge)
