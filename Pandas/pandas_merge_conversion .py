@@ -201,3 +201,13 @@ print('-'*50)
 pivot_df = titanic.groupby(['Sex','Pclass'])['Age'].mean().reset_index()
 pivot_table = pivot_df.pivot(index='Sex', columns='Pclass', values='Age')
 print(pivot_table)
+
+# pivot_table()
+print(
+    titanic.pivot_table(
+        index='Sex',
+        columns='Pclass',
+        values='Age',
+        aggfunc='mean'
+    )
+)
