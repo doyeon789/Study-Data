@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-titanic  =pd.read_csv('data/titanix.csv')
+titanic  =pd.read_csv('./data/titanic.csv')
 
 # 데이터 병합
 df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2'],
@@ -194,3 +194,10 @@ titanic['Embarked'] = titanic['Embarked'].replace(np.nan, 'S')
 # Cabin별 값 개수 확인
 print(titanic['Embarked'].value_counts(dropna=False))
 
+print('-'*50)
+# pivot()
+
+# 설병(Sex) x 객실등급(Pclass)별 평균 나이(Age) - pivot
+pivot_df = titanic.groupby(['Sex','Pclass'])['Age'].mean().reset_index()
+pivot_table = pivot_df.pivot(index='Sex', columns='Pclass', values='Age')
+print(pivot_table)
