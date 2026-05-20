@@ -1,4 +1,7 @@
 import pandas as pd
+import numpy as np
+
+titanic  =pd.read_csv('data/titanix.csv')
 
 # 데이터 병합
 df1 = pd.DataFrame({'A': ['A0', 'A1', 'A2'],
@@ -173,3 +176,21 @@ print('\n')
 print(df2)
 print('\n')
 print(df_merged)
+
+print('-'*50)
+
+# replcae()
+titanic['Sex'] = titanic['Sex'].replace({'male':'Man', 'female': 'Woman'})
+titanic.head()
+
+print(titanic.info())
+
+# Embarked 값 개수 확인
+print(titanic['Embarked'].value_counts(dropna=False))
+
+# NaN을 특정 값으로 대체 
+titanic['Embarked'] = titanic['Embarked'].replace(np.nan, 'S')
+
+# Cabin별 값 개수 확인
+print(titanic['Embarked'].value_counts(dropna=False))
+
