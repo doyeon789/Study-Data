@@ -153,3 +153,39 @@ services:
 - docker compose up -d : 백그라운드 실행
 - docker compose ps : 실행중인 서비스 확인
 - docker compose down : 컨테이너, 네트워크 확인
+
+## 자주 쓰이는 docker-compose.yml 문법
+
+| 키워드         | 용도                                                                                     | 예시                                  |
+| -------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
+| services       | 실행할 컨테이너(서비스)들을 정의하는 취상위 키, 각 서비스별로 이미지, 포트, 볼륨 등 설정 | services: web: ..                     |
+| image          | 사용할 도커 이미지를 지정                                                                | image:nginx:latest                    |
+| build          | 로컬 Dockerfile로 이미지를 직접 빌드할 때 사용                                           | build:./app                           |
+| container_name | 컨테이너이름을 직접 지정 (안 하면 자동 생성됨)                                           | container_name: my_ap                 |
+| ports          | 호스트 <-> 컨테이너 포트 연결. "호스트:컨테이너" 형식                                    | ports:-"8080:80"                      |
+| volumes        | 데이터 공유/저장. 로컬 디렉토리를 컨테이너에 마운트하거나 볼륨 이름을 지정               | volumes:- ./data:/var/lib/mysql       |
+| enviroment     | 컨테이너 내부 환경 변수 직접 지정                                                        | enviroment: -MYSQL_ROOT_PASSWORD=1234 |
+| env_file       | .env 파일에서 환경 변수 한꺼번에 가져오기                                                | env_file: - .env                      |
+| command        | 컨테이너 시작 시 실행할 명령어(Dockerfile의 CMD를 덮어씀)                                | command: python app.py                |
+
+### 상위 키워드
+
+| 키워드   | 용도                                                       | 예시                  |
+| -------- | ---------------------------------------------------------- | --------------------- |
+| volumes  | 여러 서비스가 공유하는 데이터 볼륨 정의                    | volumes: db_data:     |
+| networks | 사용자 정의 네트워크 생성(컨테이너 간 별도 통신망 필요 시) | networks: my_network: |
+
+## 자주쓰이는 Docker Compose 명령어
+
+| 명령어                 | 용도                                                                        | 예시                                  |
+| ---------------------- | --------------------------------------------------------------------------- | ------------------------------------- |
+| docker compose up      | docker-compose.yml에 정의된 컨테이너를 생성-시작 (-d 옵션: 백그라운드 실행) | docker compose up -d                  |
+| docker compose down    | 실행중인 모든 컨테이너, 네트워크, 볼륨, 중단 및 삭제                        | docker compose down                   |
+| docker compose ps      | 현재 Compose로 실행 중인 컨테이너 상태 확인                                 | docker compose ps                     |
+| docker compose logs    | 컨테이너 로그 출력 (-f 옵션: 실시간 로그)                                   | docker compose logs -f                |
+| docker compose stop    | 컨테이너 중지 (삭제 X)                                                      | docker compose stop                   |
+| docker compose start   | 중지된 컨테이너 재식작                                                      | docker compose starat                 |
+| docker compose restart | 컨테이너 재시작                                                             | docker compose restart                |
+| docker compose build   | Dockerfile 기반으로 이미지 빌드                                             | docker compose build                  |
+| docker compose exec    | 실행중인 컨테이너에서 명령어 실행                                           | docker compose exec <서비스명> <명령> |
+| docker compose run     | 새로운 일회성 컨테이너 실행                                                 | docker compose run --rm web sh        |
