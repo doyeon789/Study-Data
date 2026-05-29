@@ -3,19 +3,19 @@
 - 어플리케이션을 컨테이너라는 가볍고 독립적인 환경에서 실행할 수 있도록 도와주는 가상화 플랫폼(오픈소스)
 - 외부 환경과 격리된 상태에서 애플리케이션이 환경에 영향 받지 않고 실행될 수 있도록 하는 소프트웨어
 
-# 컨테이너
+## 컨테이너
 
 - 컨테이너(Container)는 어떤 물체나 데이터를 외부와 분리된 공간에 담아두는 것
 - 물체를 격리하는 공간과 비슷한 의미
   ![alt text](image.png)
 
-## 컨테이너의 필요성
+### 컨테이너의 필요성
 
 - 환경 차이 없이 어디서든 실행 가능
 - 설치/설정 충돌 방지
 - 빠른 실행과 이식성
 
-# 도커의 핵심 구성 요소
+## 도커의 핵심 구성 요소
 
 - 도커 엔진(DOcker Engine)
   - Docker의 중심이 되는 실행 시스템
@@ -38,7 +38,7 @@
   - 가장 대표적인 예는 Docker Hub
   - 사용자는 docker pull로 이미지를 내려 받고, docker push로 자신이 만ㄷ느 이미지를 업로드할 수 있음
 
-# Dockerfile, Docker Image, Docker Container의 관계
+## Dockerfile, Docker Image, Docker Container의 관계
 
 - 도커 파일 (Dockerfile)
   - Dockerfile은 이미지를 만들기 위한 설계도
@@ -67,14 +67,14 @@ CMD ["npm", "start"]
   - 내부에서는 실제 애플리케이션이 졸아감
   - 각 컨테이너는 자신만의 파일 시스템과 프로세스를 가짐(다른 컨테이너와 격리)
 
-# 도커 관련 주요 도구
+## 도커 관련 주요 도구
 
 - 도커 컴포즈(Docker Compose)
   - 여러 개의 컨테이너를한 번에 실행하고 관리할 수 있는 도구
   - docker-compose.yml 파일에 컨테이너 구성과 관계를 정의
   - 다른 여러 종류의 서버를 하나의 시스템처러 묶어서 실행
 
-# 도커 사용 사례
+## 도커 사용 사례
 
 - 개발 및 테스트
   - 일관된 개발 환경을 구축
@@ -124,3 +124,32 @@ CMD ["npm", "start"]
 | docker cp [파일] [컨테이너]:[경로}] | 컨테이너에 파일 복사                       |
 | docker container stats [이름]       | 컨테이너 리소스 사용량 확인                |
 | docker build -t [이미지 이름] .     | 현재 디렉토리에서 Dockerfile로 이미지 생성 |
+
+# Docker Compose
+
+## Docker Compose란?
+
+- Docker Compose는 여러 컨테이너를 하나의 프로젝트처럼 관리할 수 있게 해주는 도구
+- docker-compose.yml 파일에 정의된 내용을 바탕으로 하나에 컨테이너들을 실행
+
+## docker-compose.yml구조
+
+```
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  db:
+    image: mongo
+```
+
+- services: 컨테이너 목록
+- image: 사용할 도커 이미지
+- ports: 호스트와 컨테이너의 포트 매핑
+
+## Docker compose 명령어
+
+- docker compose up -d : 백그라운드 실행
+- docker compose ps : 실행중인 서비스 확인
+- docker compose down : 컨테이너, 네트워크 확인
